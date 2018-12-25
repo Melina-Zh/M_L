@@ -85,7 +85,7 @@ def next_v():
 
 
 
-    model=simpleNet(22,120,220,320,420,2)
+    model=simpleNet(22,220,220,220,2)
     model.load_state_dict(torch.load('params.pkl'))
     model.eval()
     
@@ -137,7 +137,7 @@ def next_v_2():
 
 
 
-    model=simpleNet(22,120,220,320,420,2)
+    model=simpleNet(22,220,220,220,2)
     model.load_state_dict(torch.load('params2.pkl'))
     model.eval()
     

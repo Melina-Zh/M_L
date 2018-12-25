@@ -16,20 +16,20 @@ arr_vel,arr_angle,sorted_total_h,sorted_total_v,sorted_total_h_vel,sorted_total_
 output_vel_h,output_vel_v=get_dataset()
 
 class simpleNet(nn.Module):
-    def __init__(self,in_dim,n_hidden_1,n_hidden_2,n_hidden_3,n_hidden_4,out_dim):
+    def __init__(self,in_dim,n_hidden_1,n_hidden_2,n_hidden_3,out_dim):
         super(simpleNet,self).__init__()  #
         self.layer1=nn.Sequential(nn.Linear(in_dim,n_hidden_1),nn.BatchNorm1d(n_hidden_1),nn.ReLU(True))
         self.layer2=nn.Sequential(nn.Linear(n_hidden_1,n_hidden_2),nn.BatchNorm1d(n_hidden_2),nn.ReLU(True))
         self.layer3=nn.Sequential(nn.Linear(n_hidden_2,n_hidden_3),nn.BatchNorm1d(n_hidden_3),nn.ReLU(True))
-        self.layer4=nn.Sequential(nn.Linear(n_hidden_3,n_hidden_4),nn.BatchNorm1d(n_hidden_4),nn.ReLU(True))
-        self.layer5=nn.Linear(n_hidden_4,out_dim)
+       # self.layer4=nn.Sequential(nn.Linear(n_hidden_3,n_hidden_4),nn.BatchNorm1d(n_hidden_4),nn.ReLU(True))
+        self.layer4=nn.Linear(n_hidden_3,out_dim)
 
     def forward(self,x):
         x=self.layer1(x)
         x=self.layer2(x)
         x=self.layer3(x)
         x=self.layer4(x)
-        x=self.layer5(x)
+    
         return x
     
     
@@ -45,7 +45,7 @@ def train():
     
     x_train=torch.from_numpy(train_x)
     y_train=torch.from_numpy(train_y)
-    model=simpleNet(22,120,220,320,420,2)
+    model=simpleNet(22,220,220,220,2)
     
     criterion=nn.MSELoss()
     optimizer=optim.SGD(model.parameters(),lr=0.1)
@@ -70,7 +70,7 @@ def train():
     
 
 
-train()
+#train()
     
     
     
